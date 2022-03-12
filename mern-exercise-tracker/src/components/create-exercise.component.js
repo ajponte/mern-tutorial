@@ -10,21 +10,19 @@ export default class CreateExercise extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
-    this.onSubmit = this.onSubmit(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
-    this.state =  {
+    this.state = {
       username: '',
       description: '',
       duration: 0,
       date: new Date(),
       users: []
-    };
+    }
   }
 
-
-  // For testing the component
   componentDidMount() {
-    this.setState({
+    this.setState({ 
       users: ['test user'],
       username: 'test user'
     });
@@ -44,7 +42,7 @@ export default class CreateExercise extends Component {
 
   onChangeDuration(e) {
     this.setState({
-      durateion: e.target.value
+      duration: e.target.value
     });
   }
 
@@ -55,18 +53,17 @@ export default class CreateExercise extends Component {
   }
 
   onSubmit(e) {
-    // prevents the default HTML form submit behavior from taking place.
     e.preventDefault();
-
+  
     const exercise = {
       username: this.state.username,
       description: this.state.description,
       duration: this.state.duration,
-      date: this.state.date
+      date: this.state.date,
     };
-
+  
     console.log(exercise);
-
+    
     window.location = '/';
   }
 
@@ -88,7 +85,7 @@ export default class CreateExercise extends Component {
                       key={user}
                       value={user}>{user}
                       </option>;
-                  });
+                  })
                 }
             </select>
           </div>
